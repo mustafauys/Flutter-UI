@@ -9,65 +9,57 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      debugShowCheckedModeBanner: false,
+      title: 'Redesign Instagram',
+      home: HomeScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class HomeScreenMenu {
+  String name;
+  bool isSelected;
 
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
+  HomeScreenMenu(this.name, this.isSelected);
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class HomeScreen extends StatefulWidget {
 
-  void _incrementCounter() {
-    setState(() {
-     
-      _counter++;
-    });
-  }
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
 
+class _HomeScreenState extends State<HomeScreen> {
+
+  List<HomeScreenMenu> myList = [
+    new HomeScreenMenu("Feed", true),
+    new HomeScreenMenu("Strories", false),
+    new HomeScreenMenu("IGTV", false),
+    new HomeScreenMenu("Events", false),
+  ];
+  
   @override
   Widget build(BuildContext context) {
    
     return Scaffold(
-      appBar: AppBar(
-       
-        title: Text(widget.title),
-      ),
-      body: Center(
-        
+      body: Padding(
+        padding: const EdgeInsets.only(top: 40.0, left: 21),
         child: Column(
-         
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+          children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 21.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Image.asset('assets/logo.png'),
+                    Image.asset('assets/notf.png'),
+                  ],
+                ),
+              ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), 
     );
   }
 }
+
