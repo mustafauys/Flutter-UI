@@ -107,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
         location: "Toronto CA",
         comment:
             "Hi Guys… I’m working on a project about edit \nimages in Adobe Lightroom",
-        post_time: "3 hour ago",
+        post_time: "2 Hour Ago",
         image: "assets/hm_1.png",
         like_count: 23000,
         comment_count: 184),
@@ -117,9 +117,9 @@ class _HomeScreenState extends State<HomeScreen> {
         location: "Toronto CA",
         comment:
             "Hi Guys… I’m working on a project about edit \nimages in Adobe Lightroom",
-        post_time: "3 hour ago",
+        post_time: "2 hour ago",
         image: "assets/hm_1.png",
-        like_count: 23000,
+        like_count: 22000,
         comment_count: 184),
   ];
 
