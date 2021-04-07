@@ -1,5 +1,8 @@
+import 'package:blackblu/Data/json.dart';
 import 'package:flutter/material.dart';
-import 'package:redesign_instagram/colors.dart';
+import 'package:blackblu/colors.dart';
+import 'package:http/http.dart' as http;
+import 'Data/staticdata.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,72 +13,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Redesign Instagram',
+      title: 'BlackBlu',
       home: HomeScreen(),
     );
   }
-}
-
-class HomeScreenMenu {
-  String name;
-  bool isSelected;
-
-  HomeScreenMenu(this.name, this.isSelected);
-}
-
-class Feeds {
-  String avatar;
-  // ignore: non_constant_identifier_names
-  String user_name;
-  String location;
-  String comment;
-  // ignore: non_constant_identifier_names
-  String post_time;
-  String image;
-  // ignore: non_constant_identifier_names
-  int like_count;
-  // ignore: non_constant_identifier_names
-  int comment_count;
-
-  Feeds(
-      {this.avatar,
-      // ignore: non_constant_identifier_names
-      this.user_name,
-      this.location,
-      this.comment,
-      // ignore: non_constant_identifier_names
-      this.post_time,
-      this.image,
-      // ignore: non_constant_identifier_names
-      this.like_count,
-      // ignore: non_constant_identifier_names
-      this.comment_count});
-}
-
-class Menu {
-  String icon;
-  bool isSelected;
-  Menu({this.icon, this.isSelected});
-}
-
-class Birthdays {
-  String avatar;
-  String name;
-  String age;
-  bool isFemale;
-  Birthdays({this.avatar, this.name, this.age, this.isFemale});
-}
-
-class Stories {
-  String image;
-  String avatar;
-  String name;
-  // ignore: non_constant_identifier_names
-  String post_time;
-
-  // ignore: non_constant_identifier_names
-  // ignore: non_constant_identifier_names
-  Stories({this.image, this.avatar, this.name, this.post_time});
 }
 
 class HomeScreen extends StatefulWidget {
@@ -83,82 +24,11 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
+// ÜST BANNER KODLARI BU BÖLÜMDE YER ALIYOR.
+//
+//
+//
 class _HomeScreenState extends State<HomeScreen> {
-  int currentSelectedIndex = 0;
-  int currentPageIndex = 0;
-  List<HomeScreenMenu> myList = [
-    new HomeScreenMenu("Feed", true),
-    new HomeScreenMenu("Stories", false),
-    new HomeScreenMenu("IGTV", false),
-    new HomeScreenMenu("Events", false),
-  ];
-
-  List<Menu> myMenu = [
-    new Menu(icon: "assets/home.png", isSelected: true),
-    new Menu(icon: "assets/search.png", isSelected: false),
-    new Menu(icon: "assets/tab3.png", isSelected: false),
-    new Menu(icon: "assets/avatar.png", isSelected: false),
-  ];
-
-  List<Feeds> myFeeds = [
-    new Feeds(
-        avatar: "assets/helen_miles.png",
-        user_name: "Helen miles",
-        location: "Toronto CA",
-        comment:
-            "Hi Guys… I’m working on a project about edit \nimages in Adobe Lightroom",
-        post_time: "2 Hour Ago",
-        image: "assets/hm_1.png",
-        like_count: 23000,
-        comment_count: 184),
-    new Feeds(
-        avatar: "assets/john_legend.png",
-        user_name: "John Legend",
-        location: "Toronto CA",
-        comment:
-            "Hi Guys… I’m working on a project about edit \nimages in Adobe Lightroom",
-        post_time: "2 hour ago",
-        image: "assets/hm_1.png",
-        like_count: 22000,
-        comment_count: 184),
-  ];
-
-  List<Birthdays> myBirtdays = [
-    new Birthdays(
-        avatar: "assets/brt_ali_yasini.png",
-        name: "Ali Yasini",
-        age: "26 years old",
-        isFemale: false),
-    new Birthdays(
-        avatar: "assets/Niloofar.png",
-        name: "Niloofar",
-        age: "24 years old",
-        isFemale: true),
-    new Birthdays(
-        avatar: "assets/Niloofar.png",
-        name: "Niloofar",
-        age: "24 years old",
-        isFemale: true),
-  ];
-
-  List<Stories> myStories = [
-    new Stories(
-        avatar: "assets/str_aria_majidi.png",
-        name: "Aria majidi",
-        image: "assets/str1.png",
-        post_time: "2 min ago"),
-    new Stories(
-        avatar: "assets/str_helen_miles.png",
-        name: "Helen miles",
-        image: "assets/str2.png",
-        post_time: "2 min ago"),
-    new Stories(
-        avatar: "assets/str_someone.png",
-        name: "Aria majidi",
-        image: "assets/str3.png",
-        post_time: "14 min ago"),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -175,13 +45,24 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Image.asset('assets/logo.png'),
+                      Text(
+                        "BlackBlu",
+                        style: TextStyle(
+                            fontSize: 27,
+                            color: Colors.blueGrey,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 3),
+                      ),
                       Container(
                         width: 22.32,
                         height: 26.26,
                         child: Stack(
                           children: <Widget>[
-                            Image.asset('assets/notf.png'),
+                            Icon(
+                              Icons.notifications,
+                              color: Colors.blueGrey,
+                              size: 30.0,
+                            ),
                             Align(
                               alignment: Alignment.topRight,
                               child: Container(
@@ -212,6 +93,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: 10,
                 ),
+
+                //
+                //
+                //
+                //
+                //ÜST HEADER KODLARI BU BÖLÜMDE YER ALIYOR.
                 Container(
                   height: 50,
                   child: ListView.builder(
@@ -242,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         style: TextStyle(
                                             fontSize: 18,
                                             color: myList[index].isSelected
-                                                ? redcolor
+                                                ? Colors.blueGrey
                                                 : Colors.black),
                                       ),
                                       myList[index].isSelected
@@ -255,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   width: 8,
                                                   height: 8,
                                                   decoration: BoxDecoration(
-                                                      color: redcolor,
+                                                      color: Colors.green,
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               4)),
@@ -276,122 +163,146 @@ class _HomeScreenState extends State<HomeScreen> {
                     shrinkWrap: true,
                   ),
                 ),
+                //
+                //
+                //
+                //
+                //
+                //GÖNDERİ KODLARI BU BÖLÜMDE YER ALIYOR.
                 currentSelectedIndex == 0
                     ? Expanded(
                         child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: ClampingScrollPhysics(),
                           itemBuilder: (context, int index) {
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    Image.asset(myFeeds[index].avatar),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width -
-                                              89 -
-                                              8 -
-                                              21,
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: <Widget>[
-                                              Text(
-                                                myFeeds[index].user_name,
-                                              ),
-                                              Text(
-                                                myFeeds[index].location,
-                                                style:
-                                                    TextStyle(color: greyColor),
-                                              )
-                                            ],
+                                Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20)),
+                                  child: Row(
+                                    children: <Widget>[
+                                      Image.asset(gonderiler[index].avatar),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width -
+                                                89 -
+                                                8 -
+                                                21,
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Text(
+                                                  gonderiler[index].user_name,
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                ),
+                                                Text(
+                                                  gonderiler[index].location,
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                        Icon(
-                                          Icons.more_horiz,
-                                          color: Color(0xFF434343),
-                                        )
-                                      ],
-                                    ),
-                                  ],
+                                          Icon(
+                                            Icons.more_horiz,
+                                            color: Color(0xFF434343),
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 SizedBox(
                                   height: 10,
                                 ),
                                 Text(
-                                  myFeeds[index].comment,
-                                  style: TextStyle(fontSize: 17.5),
+                                  gonderiler[index].comment,
+                                  style: TextStyle(color: Colors.black),
                                 ),
                                 SizedBox(
-                                  height: 3,
+                                  height: 10,
                                 ),
-                                Text(
-                                  myFeeds[index].post_time,
-                                  style: TextStyle(color: greyColor),
+                                Center(
+                                  child: Container(
+                                    width: 300,
+                                    height: 300,
+                                    child: FutureBuilder<List<Photo>>(
+                                      future: fetchPhotos(http.Client()),
+                                      builder: (context, snapshot) {
+                                        if (snapshot.hasError)
+                                          print(snapshot.error);
+
+                                        return snapshot.hasData
+                                            ? PhotosList(photos: snapshot.data)
+                                            : Center(
+                                                child:
+                                                    CircularProgressIndicator());
+                                      },
+                                    ),
+                                  ),
                                 ),
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                Image.asset(myFeeds[index].image),
                                 SizedBox(
                                   height: 10,
                                 ),
                                 Row(
-                                  children: <Widget>[
-                                    Container(
-                                      width: 42,
-                                      height: 42,
-                                      child: Center(
-                                        child: Image.asset('assets/like.png'),
-                                      ),
-                                      decoration: BoxDecoration(
-                                          color: redTransColor,
-                                          borderRadius:
-                                              BorderRadius.circular(21)),
+                                  children: [
+                                    Icon(
+                                      Icons.favorite,
+                                      color: Colors.red,
+                                      size: 30,
                                     ),
+                                    SizedBox(width: 10),
                                     Text(
-                                      myFeeds[index].like_count > 1000
-                                          ? (myFeeds[index].like_count / 1000)
-                                                  .toString() +
-                                              'K'
-                                          : myFeeds[index]
-                                              .like_count
-                                              .toString(),
-                                      style: TextStyle(color: redcolor),
+                                      "1.7k",
+                                      style: TextStyle(fontSize: 16),
                                     ),
                                     SizedBox(
-                                      width: 15,
+                                      width: 75,
+                                      height: 50,
+                                    ),
+                                    Icon(
+                                      Icons.comment,
+                                      color: Colors.black,
+                                      size: 30,
+                                    ),
+                                    SizedBox(width: 10),
+                                    Text(
+                                      "325",
+                                      style: TextStyle(fontSize: 16),
                                     ),
                                     Container(
-                                      width: 42,
-                                      height: 42,
-                                      child: Center(
-                                        child:
-                                            Image.asset('assets/comment.png'),
+                                      width: MediaQuery.of(context).size.width -
+                                          235,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          Icon(
+                                            Icons.reply,
+                                            color: Colors.green,
+                                            size: 30,
+                                          ),
+                                          SizedBox(width: 5),
+                                          Text(
+                                            "2.3k",
+                                            style: TextStyle(fontSize: 16),
+                                          ),
+                                          SizedBox(width: 25),
+                                        ],
                                       ),
-                                      decoration: BoxDecoration(
-                                          color: blueTransColor,
-                                          borderRadius:
-                                              BorderRadius.circular(21)),
                                     ),
-                                    Text(
-                                        myFeeds[index].comment_count > 1000
-                                            ? (myFeeds[index].comment_count /
-                                                        1000)
-                                                    .toString() +
-                                                'K'
-                                            : myFeeds[index]
-                                                .comment_count
-                                                .toString(),
-                                        style: TextStyle(color: blueColor)),
                                   ],
                                 ),
                                 SizedBox(
@@ -400,9 +311,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               ],
                             );
                           },
-                          itemCount: myFeeds.length,
-                          shrinkWrap: true,
+                          itemCount: gonderiler.length,
                         ),
+                        //
+                        //
+                        //
+                        //
+                        //
+                        //HİKAYELER KISMI KODLARI BU BÖLÜMDE YER ALIYOR.
                       )
                     : currentSelectedIndex == 1
                         ? Expanded(
@@ -410,7 +326,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  'Today’s Birthday',
+                                  'En Popüler Kullanıcılar',
                                   style: TextStyle(fontSize: 22),
                                 ),
                                 SizedBox(
@@ -432,13 +348,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 child: Column(
                                                   children: <Widget>[
                                                     Image.asset(
-                                                        myBirtdays[index]
+                                                        populerkullanici[index]
                                                             .avatar),
                                                     SizedBox(
                                                       height: 3,
                                                     ),
                                                     Text(
-                                                      myBirtdays[index].name,
+                                                      populerkullanici[index]
+                                                          .name,
                                                       style: TextStyle(
                                                           fontSize: 15),
                                                     ),
@@ -446,7 +363,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       height: 3,
                                                     ),
                                                     Text(
-                                                      myBirtdays[index].age,
+                                                      populerkullanici[index]
+                                                          .age,
                                                       style: TextStyle(
                                                           color: Color(
                                                               0xFFADADAD)),
@@ -458,26 +376,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       width: 107,
                                                       height: 29,
                                                       child: Center(
-                                                        child: Text(
-                                                          'Wish ' +
-                                                              (myBirtdays[index]
-                                                                      .isFemale
-                                                                  ? 'Her'
-                                                                  : 'Him'),
-                                                          style: TextStyle(
-                                                              color: myBirtdays[
-                                                                          index]
-                                                                      .isFemale
-                                                                  ? redcolor
-                                                                  : blueColor,
-                                                              fontSize: 15),
-                                                        ),
+                                                        child:
+                                                            Text('Takip Et '),
                                                       ),
                                                       decoration: BoxDecoration(
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(15),
-                                                          color: myBirtdays[
+                                                          color: populerkullanici[
                                                                       index]
                                                                   .isFemale
                                                               ? redButtonColor
@@ -498,7 +404,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ],
                                         );
                                       },
-                                      itemCount: myBirtdays.length,
+                                      itemCount: populerkullanici.length,
                                       shrinkWrap: true,
                                       scrollDirection: Axis.horizontal,
                                     )),
@@ -506,7 +412,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: 20,
                                 ),
                                 Text(
-                                  'New Stories',
+                                  'Yeni Hikayeler',
                                   style: TextStyle(fontSize: 22),
                                 ),
                                 SizedBox(
@@ -524,7 +430,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             child: Stack(
                                               children: <Widget>[
                                                 Image.asset(
-                                                  myStories[index].image,
+                                                  yenihikaye[index].image,
                                                 ),
                                                 Image.asset('assets/bg.png'),
                                                 Align(
@@ -543,7 +449,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         child: Row(
                                                           children: <Widget>[
                                                             Image.asset(
-                                                                myStories[index]
+                                                                yenihikaye[
+                                                                        index]
                                                                     .avatar),
                                                             SizedBox(
                                                               width: 5,
@@ -555,7 +462,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                               children: <
                                                                   Widget>[
                                                                 Text(
-                                                                  myStories[
+                                                                  yenihikaye[
                                                                           index]
                                                                       .name,
                                                                   style: TextStyle(
@@ -565,7 +472,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                           14),
                                                                 ),
                                                                 Text(
-                                                                  myStories[
+                                                                  yenihikaye[
                                                                           index]
                                                                       .post_time,
                                                                   style: TextStyle(
@@ -587,11 +494,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),
                                           SizedBox(
                                             width: 19,
-                                          )
+                                          ),
                                         ],
                                       );
                                     },
-                                    itemCount: myStories.length,
+                                    itemCount: yenihikaye.length,
                                     shrinkWrap: true,
                                     scrollDirection: Axis.horizontal,
                                   ),
@@ -603,6 +510,12 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
+          //
+          //
+          //
+          //
+          //
+          //BOTTOM NAVBAR KODLARI BU BÖLÜMDE YER ALIYOR.
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
@@ -614,13 +527,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Container(
                       height: 70,
                       width: MediaQuery.of(context).size.width,
-                      color: Colors.white,
+                      color: Colors.transparent,
                       child: Row(
                         children: <Widget>[
                           Container(
-                            width:
-                                (MediaQuery.of(context).size.width / 2) - 30.5,
-                            height: 70,
                             child: Row(
                               children: <Widget>[
                                 InkWell(
@@ -629,11 +539,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                       currentPageIndex = 0;
                                     });
                                   },
-                                  child: MenuItem(
-                                    mycontext: context,
-                                    icon: 'assets/home.png',
-                                    isSelected:
-                                        currentPageIndex == 0 ? true : false,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    width:
+                                        MediaQuery.of(context).size.width / 3,
+                                    margin: EdgeInsets.only(right: 5, left: 5),
+                                    child: Icon(
+                                      Icons.home,
+                                      color: Colors.blueAccent,
+                                      size: 36,
+                                    ),
                                   ),
                                 ),
                                 InkWell(
@@ -642,64 +559,46 @@ class _HomeScreenState extends State<HomeScreen> {
                                       currentPageIndex = 1;
                                     });
                                   },
-                                  child: MenuItem(
-                                    mycontext: context,
-                                    icon: 'assets/search.png',
-                                    isSelected:
-                                        currentPageIndex == 1 ? true : false,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    width:
+                                        MediaQuery.of(context).size.width / 3.5,
+                                    margin: EdgeInsets.only(right: 5),
+                                    child: Icon(
+                                      Icons.favorite,
+                                      color: Colors.red,
+                                      size: 36,
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      currentPageIndex = 1;
+                                    });
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    width:
+                                        MediaQuery.of(context).size.width / 3,
+                                    child: Container(
+                                      child: Icon(
+                                        Icons.supervised_user_circle,
+                                        color: Colors.blue,
+                                        size: 36,
+                                      ),
+                                    ),
                                   ),
                                 )
                               ],
                             ),
                           ),
-                          SizedBox(
-                            width: 61,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              setState(() {
-                                currentPageIndex = 2;
-                              });
-                            },
-                            child: MenuItem(
-                              mycontext: context,
-                              icon: 'assets/tab3.png',
-                              isSelected: currentPageIndex == 2 ? true : false,
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              setState(() {
-                                currentPageIndex = 3;
-                              });
-                            },
-                            child: MenuItem(
-                              mycontext: context,
-                              icon: 'assets/avatar.png',
-                              isSelected: currentPageIndex == 3 ? true : false,
-                            ),
-                          )
                         ],
                       ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: Container(
-                      width: 61,
-                      height: 61,
-                      child: Center(
-                        child: Image.asset('assets/plus.png'),
-                      ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(27),
-                          color: redcolor,
-                          boxShadow: [
-                            BoxShadow(
-                                offset: Offset(-1, 6),
-                                blurRadius: 10,
-                                color: Color(0xFFF86B68).withOpacity(.36))
-                          ]),
                     ),
                   ),
                 ],
@@ -707,41 +606,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           )
         ],
-      ),
-    );
-  }
-}
-
-// ignore: must_be_immutable
-class MenuItem extends StatelessWidget {
-  BuildContext mycontext;
-  String icon;
-  bool isSelected;
-  MenuItem({this.mycontext, this.icon, this.isSelected = false});
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: ((MediaQuery.of(mycontext).size.width / 2) - 30.5) / 2,
-      height: 70,
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Image.asset(icon),
-            SizedBox(
-              height: 5,
-            ),
-            isSelected
-                ? Container(
-                    width: 4,
-                    height: 4,
-                    decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(2)),
-                  )
-                : SizedBox(),
-          ],
-        ),
       ),
     );
   }
