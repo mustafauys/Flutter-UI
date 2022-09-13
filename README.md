@@ -1,6 +1,6 @@
-# Revamped User Interface Design.
+# Developable Interface Design
 
-I redesigned the user interface of Instagram in this application. It can be improved further.
+A simple interface work, it can be further improved.
 
 ## Screens
 
