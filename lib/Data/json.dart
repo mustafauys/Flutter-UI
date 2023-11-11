@@ -19,11 +19,11 @@ List<Photo> parsePhotos(String responseBody) {
 }
 
 class Photo {
-  final int albumId;
-  final int id;
-  final String title;
-  final String url;
-  final String thumbnailUrl;
+  final int? albumId;
+  final int? id;
+  final String? title;
+  final String? url;
+  final String? thumbnailUrl;
 
   Photo({this.albumId, this.id, this.title, this.url, this.thumbnailUrl});
 
@@ -39,9 +39,9 @@ class Photo {
 }
 
 class PhotosList extends StatelessWidget {
-  final List<Photo> photos;
+  final List<Photo>? photos;
 
-  PhotosList({Key key, this.photos}) : super(key: key);
+  PhotosList({Key? key, this.photos}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +55,7 @@ class PhotosList extends StatelessWidget {
             decoration: BoxDecoration(
                 border: Border.all(width: 2, color: Colors.green),
                 borderRadius: BorderRadius.circular(20)),
-            child: Image.network(photos[index].url));
+            child: Image.network(photos![index].url.toString()));
       },
     );
   }

@@ -183,7 +183,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                       borderRadius: BorderRadius.circular(20)),
                                   child: Row(
                                     children: <Widget>[
-                                      Image.asset(gonderiler[index].avatar),
+                                      Image.asset(
+                                          gonderiler[index].avatar.toString()),
                                       SizedBox(
                                         width: 5,
                                       ),
@@ -203,12 +204,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   CrossAxisAlignment.start,
                                               children: <Widget>[
                                                 Text(
-                                                  gonderiler[index].user_name,
+                                                  gonderiler[index]
+                                                      .userName
+                                                      .toString(),
                                                   style: TextStyle(
                                                       color: Colors.black),
                                                 ),
                                                 Text(
-                                                  gonderiler[index].location,
+                                                  gonderiler[index]
+                                                      .location
+                                                      .toString(),
                                                   style: TextStyle(
                                                       color: Colors.black),
                                                 ),
@@ -228,7 +233,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: 10,
                                 ),
                                 Text(
-                                  gonderiler[index].comment,
+                                  gonderiler[index].comment.toString(),
                                   style: TextStyle(color: Colors.black),
                                 ),
                                 SizedBox(
@@ -349,13 +354,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   children: <Widget>[
                                                     Image.asset(
                                                         populerkullanici[index]
-                                                            .avatar),
+                                                            .avatar
+                                                            .toString()),
                                                     SizedBox(
                                                       height: 3,
                                                     ),
                                                     Text(
                                                       populerkullanici[index]
-                                                          .name,
+                                                          .name
+                                                          .toString(),
                                                       style: TextStyle(
                                                           fontSize: 15),
                                                     ),
@@ -364,7 +371,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     ),
                                                     Text(
                                                       populerkullanici[index]
-                                                          .age,
+                                                          .age
+                                                          .toString(),
                                                       style: TextStyle(
                                                           color: Color(
                                                               0xFFADADAD)),
@@ -380,14 +388,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                                             Text('Takip Et '),
                                                       ),
                                                       decoration: BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(15),
-                                                          color: populerkullanici[
-                                                                      index]
-                                                                  .isFemale
-                                                              ? redButtonColor
-                                                              : blueButtonColor),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(15),
+                                                        color: populerkullanici[
+                                                                    index]
+                                                                .isFemale!
+                                                            ? redButtonColor
+                                                            : blueButtonColor,
+                                                      ),
                                                     )
                                                   ],
                                                 ),
@@ -430,7 +439,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                             child: Stack(
                                               children: <Widget>[
                                                 Image.asset(
-                                                  yenihikaye[index].image,
+                                                  yenihikaye[index]
+                                                      .image
+                                                      .toString(),
                                                 ),
                                                 Image.asset('assets/bg.png'),
                                                 Align(
@@ -442,7 +453,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                             bottom: 12.0),
                                                     child: Padding(
                                                       padding: const EdgeInsets
-                                                              .symmetric(
+                                                          .symmetric(
                                                           horizontal: 10.0),
                                                       child: Container(
                                                         height: 35,
@@ -451,7 +462,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                             Image.asset(
                                                                 yenihikaye[
                                                                         index]
-                                                                    .avatar),
+                                                                    .avatar
+                                                                    .toString()),
                                                             SizedBox(
                                                               width: 5,
                                                             ),
@@ -459,12 +471,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                                               crossAxisAlignment:
                                                                   CrossAxisAlignment
                                                                       .start,
-                                                              children: <
-                                                                  Widget>[
+                                                              children: <Widget>[
                                                                 Text(
                                                                   yenihikaye[
                                                                           index]
-                                                                      .name,
+                                                                      .name
+                                                                      .toString(),
                                                                   style: TextStyle(
                                                                       color: Colors
                                                                           .white,
@@ -474,7 +486,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                 Text(
                                                                   yenihikaye[
                                                                           index]
-                                                                      .post_time,
+                                                                      .postTime
+                                                                      .toString(),
                                                                   style: TextStyle(
                                                                       color: Color(
                                                                           0xFFE3E3E3),
